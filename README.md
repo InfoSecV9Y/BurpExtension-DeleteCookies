@@ -1,4 +1,5 @@
-# BurpMacro-DeleteCookies
+# BurpExtension-DeleteCookies
+
 This script is used to delete the cookie matched with cookie_name_list from Burp Cookie Jar.
 
 **Purpose:** This script is designed to clear the unnecessary cookies from the Burp Suite Cookie Jar, especially when using macros for Auto-Login on the ADFS(Active Directory Federation Services) web portal pentest. 
