@@ -4,7 +4,7 @@ This script is used to delete the cookie matched with cookie_name_list from Burp
 
 **Purpose:** This script is designed to clear the unnecessary cookies from the Burp Suite Cookie Jar, especially when using macros for Auto-Login on the ADFS(Active Directory Federation Services) web portal pentest. 
 
-The challenge I faced in my previous project was, whenever the session handling rule detected the session has been expired, the Burp suite macros will be executed to get the valid session. During this process, the ADFS server gives the required values as cookie name but not as cookie value. For example: ".AspNetCore.Correlation.OpenIdConnect.*" and ".AspNetCore.OpenIdConnect.Nonce.*". Since the cookie name is different, the Burp cookie jar is not cleared for old cookies (no overwrite due to change in the cookie name itself) and sending old cookies along with new cookie as part of getting valid session, which makes the request suspecious and get rejected by the ADFS server.  
+The challenge I faced in my previous project was, whenever the session handling rule detected the session has been expired, the Burp suite macros will be executed to get the valid session. During this process, the ADFS server gives the required values as cookie name but not as cookie value. For example: **".AspNetCore.Correlation.OpenIdConnect.\*"** and **".AspNetCore.OpenIdConnect.Nonce.\*"**. Since the cookie name is different, the Burp cookie jar is not cleared for old cookies (no overwrite due to change in the cookie name itself) and sending old cookies along with new cookie as part of getting valid session, which makes the request suspecious and get rejected by the ADFS server.  
 
 
 #### **Burp Extension:** DeleteCookies_from_list v0.4
