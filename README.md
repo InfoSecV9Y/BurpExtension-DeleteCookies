@@ -8,10 +8,73 @@ The challenge I faced in my previous project was, whenever the session handling 
 
 
 
-## **Burp Extension:** DeleteCookies_IgnoreMacroCookies v0.5 (work in progress)
-**Purpose:** To delete all the cookies from the BurpSuite Cookie Jar except the new ones recevied through burp macros. 
+## **Burp Extension:** DeleteCookies_IgnoreMacroCookies v0.5
+**Purpose:** To keep the following cookies and then delete the remaining cookies from the BurpSuite Cookie Jar: 
 
-**Usecase:** To keep the latest cookies (means the cookies received through Burp Macro's during the session handling) and delete the remaining cookies from Cookie Jar. You can use this script while configuring the session handling rules with *"Rule Action: Check if session is invalid"* and run using *"After running the macro, invoke a Burp extension action handler."* option. 
+1. Delete new cookies(cookies received fon Session handling macros) is matches with predifined BLACKLIST
+
+2. Ignore new cookies from macro's/session handling macros
+
+3. Ignore the user provided custom whitelist scenarios:
+
+   3.1. Cookie Name
+
+   3.2  Cookie Domain
+
+   3.3. Cookie Path
+
+   3.4. Predefined cookie list with the format like [[Name, Domain, Path],[Name, Domain, Path],[Name, Domain, Path]]
+
+### Terminology: 
+**Old cookie:** Cookie that was already present in the Burp Suite Cookie Jar (before running the session handling macros)
+
+**New Cookie:** Cookie recevied during the execusion of session handling macros. For example, the cookies received during the Auto-login automation using session handling rules. 
+
+
+### Features: 
+1. This script can work with or without any macros. Means that, if a session handling rules is cofigured without any macros, the script still work without any issue. This case is used when you wish to remove all the old cookies.
+
+2. If the session handling macro doesn't have any response, then this extension doesn't exit due to exception. Instead, it proceed with analyzing new macro from the session handling rules list.
+
+3. This is designed with the customization in mind. Means you can remove the new cookie or can keep the old cookie based on your convinience. A minimal version is also provided in this channel if you don't need any customization.
+
+4. Detailed debug(print) statements are provided along with the timestamps for easy troubleshooting. You may save logs to file using "Burp Extender >> Burp Extension >> Output >> Save to file" and then open with the tools like snaketail for convinience. 
+
+### Limitations: 
+1. This script can only be used to run with Session Handling Rules (Burp >> Project Options >> Sessions >> Session handling Rules) and this is the purpose of writing this extension ;) 
+
+### TO DO:
+* Planning to provide the walkthough of installing the extension and testing the same 
+
+* No other plans on enhancing this script (v0.5) further. Some other usecases were covered in previous versions. Any suggestions are welcome.
+
+### Workflow:
+
+1. Working with New cookies (to delete any new cookies if you dont want)
+
+	1.1. collect the list of cookies from the session handling macros list
+		
+	1.2. Compare with *"cookies_BLACKLIST_to_NUKE"*. If any new cookie matches with the blacklist, the cookie will be nuked from cookie jar
+
+2. Working with old cookies ( to keep the old cookies if you want)
+
+	2.1. Ignore the cookie if the COOKIE NAME matches with *"cookie_name_to_ignore"* 
+		
+	2.2. Ignore the cookie if the COOKIE DOMAIN matches with *"cookie_domain_to_ignore"* 
+		
+	2.3 Ignore the cookie if the COOKIE PATH matches with *"cookie_path_to_ignore"* 
+		
+	2.4 Ignore the cookie if the COOKIE[NAME && DOMAIN && PATH] matches with *"cookies_list_to_ignore"* 
+		
+	2.5 If any old cookie in the cookie jar that doesn't match with the above 4 rules, it will be removed from Burp cookie jar.
+
+
+### Note: 
+A minimal version of this script is also uploaded into the git hub (look for the scripts ends with keywork *mini*). Which is useful if you don't want addition features like ignoring the old cookies. Since the code is less, it is advised to go with this version if you are concerned about the script performance.
+
+
+### Usecase: 
+To keep the latest cookies (means the cookies received through Burp Macro's during the session handling) and delete the remaining cookies from Cookie Jar. You may need to use this script while configuring the session handling rules with *"Rule Action: Check if session is invalid"* and run using *"After running the macro, invoke a Burp extension action handler."* option. 
 
 
 
