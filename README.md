@@ -34,7 +34,7 @@ The challenge I faced in my previous project was, whenever the session handling 
 ### Features: 
 1. This script can work with or without any macros. Means that, if a session handling rules is cofigured without any macros, the script still work without any issue. This case is used when you wish to remove all the old cookies.
 
-2. If the session handling macro doesn't have any response, then this extension doesn't exit due to exception. Instead, it proceed with analyzing new macro from the session handling rules list.
+2. If the session handling macro doesn't have any response, then this extension doesn't exit due to exception. Instead, it proceed with analyzing remaining macro from the session handling macro list.
 
 3. This is designed with the customization in mind. Means you can remove the new cookie or can keep the old cookie based on your convinience. A minimal version is also provided in this channel if you don't need any customization.
 
